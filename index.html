@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <title>Control</title>
+        <meta charset="UTF-8"/>
+		<script type="text/javascript">
+			// Declaramos las variables
+			var myWindow;
+			var puntuacion, calidadTecnica, overAll, competidor, categoria;
+			
+			// Cuando se cargue la pagina
+			window.onload = function() {
+				init();
+			};
+			
+			// Función de Inicialización
+			function init(){
+				// inicializamos los valores de las variables a sus elementos HTML correspondientes:
+				//puntuacion = document.getElementById("puntuacion");
+				//calidadTecnica = document.getElementById("calidadTecnica");
+				//overAll = document.getElementById("overAll");
+				
+				// Cargamos una ventana para acceder al control
+				myWindow = window.open("marcador.html", "_blank", "width=800,height=600").focus();
+				//debugger;
+				//rellenarControl();
+			}
+			
+			/*function rellenarControl(){
+				debugger;
+				puntuacion = myWindow.document.getElementById("puntuacion");
+				calidadTecnica = myWindow.document.getElementById("calidadTecnica");
+				overAll = myWindow.document.getElementById("overAll");
+				competidor = myWindow.document.getElementById("competidor");
+			}*/
+			
+			function mandarDatos(){
+				var inputCategoria = document.getElementById("categoria");
+				var inputNombre = document.getElementById("nombre");
+				var inputCT = document.getElementById("ct");
+				var inputOV = document.getElementById("ov");
+				//debugger;
+				//window.postMessage({ type: "CLEAR_COOKIES_EXTENSION_API" }, "*");
+				//competidor.innerHTML = inputNombre.value;
+				document.cookie = "categoria="+inputCategoria.value;
+				document.cookie = "competidor="+inputNombre.value;
+				document.cookie = "calidadTecnica="+inputCT.value;
+				document.cookie = "overAll="+inputOV.value;
+			}
+		</script>
+
+    </head>
+    <body>
+		<form action="#">
+			<label for="nombre">Nombre del Competidor:</label>
+			<input type="text" name="nombre" id="nombre"><br>
+			<label for"categoria">Modalidad:</label>
+			<input type="text" name="categoria" id="categoria"><br>
+			<label for="ct">Calidad Tecnica:</label>
+			<input type="text" name="ct" id="ct"><br>
+			<label for="ov">OverAll:</label>
+			<input type="text" name="ov" id="ov"><br>
+			<label for="nd">Nandu:</label>
+			<input type="text" name="nd" id="nd"><br>
+			<button type="button" onclick="mandarDatos()">Mostrar en Marcador</button>
+			<button type="reset" value="Reset">Reset</button>
+			<button type="button" onclick="abrirMarcador()">Abrir Marcador</button>
+		</form>
+</html>
