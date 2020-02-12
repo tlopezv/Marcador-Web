@@ -35,17 +35,30 @@
 			//}
 			
 			function mandarDatos(){
+				// Asignamos a la variable inputCategoria el elemento de texto dónde ponemos la categoria
 				var inputCategoria = document.getElementById("categoria");
 				var inputNombre = document.getElementById("nombre");
 				var inputCT = document.getElementById("ct");
 				var inputOV = document.getElementById("ov");
 				var inputNandu = document.getElementById("nd");
+				var checkBoxND = document.getElementById("ndEnabled");
+
+				// Creamos un objeto JavaScript
 				var datos=new Object();
+				// definimos la propiedad categoria del objeto datos, asignandole el valor del elemento de texto dónde se indica la categoria
 				datos.categoria=inputCategoria.value;
 				datos.competidor=inputNombre.value;
 				datos.calidadTecnica=inputCT.value;
 				datos.overAll=inputOV.value;
-				datos.nandu=inputNandu.value;
+				// Si está habilitado que se tenga en cuenta la calidad Técnica
+				if(checkBoxND.checked == true){
+					datos.nandu=inputNandu.value;
+					datos.checkNandu=true;
+				} else {
+					datos.nandu=0;
+					datos.checkNandu=false;
+				}
+				
 				//debugger;
 				//window.postMessage({ type: "CLEAR_COOKIES_EXTENSION_API" }, "*");
 				//competidor.innerHTML = inputNombre.value;
@@ -53,7 +66,21 @@
 				//document.cookie = "competidor="+inputNombre.value;
 				//document.cookie = "calidadTecnica="+inputCT.value;
 				//document.cookie = "overAll="+inputOV.value;
+				// Se guarda en las cookies, una cadena formateada como un JSON del objeto datos
 				document.cookie=JSON.stringify(datos);
+			}
+
+			function habilitarNandu(){
+				var checkBoxND = document.getElementById("ndEnabled");
+				var inputNandu = document.getElementById("nd");
+
+				if(checkBoxND.checked == true){
+					inputNandu.disabled = false;
+					inputNandu.style.background="white";
+				} else {
+					inputNandu.disabled = true;
+					inputNandu.style.background="silver";
+				}
 			}
 		</script>
 
@@ -69,7 +96,9 @@
 			<label for="ov">OverAll:</label>
 			<input type="text" name="ov" id="ov"><br>
 			<label for="nd">Nandu:</label>
-			<input type="text" name="nd" id="nd"><br>
+			<input type="text" name="nd" id="nd">
+			<input type="checkbox" name="ndEnabled" id="ndEnabled" value="true" onclick="habilitarNandu()" checked>
+			<label for="ndEnabled">¿Hay Nandu?</label><br>
 			<button type="button" onclick="mandarDatos()">Mostrar en Marcador</button>
 			<button type="reset" value="Reset">Reset</button>
 			<!--<button type="button" onclick="abrirMarcador()">Abrir Marcador</button>-->

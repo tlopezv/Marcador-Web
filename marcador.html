@@ -55,6 +55,9 @@
 				color: white;
 				font-size: 20px;
 			}
+			#seccionNandu {
+				display: none;
+			}
 		</style>
 		<script type="text/javascript">
 			// Declaramos las variables
@@ -84,15 +87,31 @@
 					var str=JSON.parse(lastValue);
 					competidor.innerHTML = str["competidor"];
 					categoria.innerHTML = str["categoria"];
-					
+					// Guardamos la nota de Calidad Técnica
 					var ct = str["calidadTecnica"];
+					// Si el número está en formato español, se pone en formato americano para hacer los calculos con JavaScript
 					ct = ct.replace(",",".").indexOf(".")>-1?Number(ct.replace(",",".")):Number(ct);
+					// Guardamos la nota de OverAll
 					var ov = str["overAll"];
 					ov = ov.replace(",",".").indexOf(".")>-1?Number(ov.replace(",",".")):Number(ov);
-					var pts = ct + ov;
+					var nd = str["nandu"];
+					if (str.checkNandu){
+						nd = nd.replace(",",".").indexOf(".")>-1?Number(nd.replace(",",".")):Number(nd);
+					}
+					// Calculamos la puntuación sumando la Calidad Técnica y el OverAll (se añade el sumando Nandu)
+					var pts = ct + ov + nd;
 					
 					calidadTecnica.innerHTML = ct;
 					overAll.innerHTML = ov;
+					if (str.checkNandu){
+						// Mostramos la sección del desglose dónde se indica la nota de Nandu
+						document.getElementById("seccionNandu").style.display='block';
+						// Y ponemos la nota de Nandu
+						document.getElementById("nandu").innerHTML = nd;
+					} else {
+						// Ocultamos la sección del desglose dónde se indica la nota de Nandu
+						document.getElementById("seccionNandu").style.display='none';
+					}
 					puntuacion.innerHTML = pts;
 				}
 			}
@@ -154,6 +173,11 @@
 				<h3>OV</h3>
 				<!-- Nota de OverAll -->
 				<p id="overAll">0,00</p>
+				<div id="seccionNandu">
+					<h3>ND</h3>
+					<!-- Nota de Nandu -->
+					<p id="nandu">0,00</p>
+				</div>	
 			</fieldset>
 		</div>
 		
