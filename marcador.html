@@ -17,7 +17,7 @@
 				color: white;
 				margin: 10px auto;
 				text-indent: 25%;
-				font-size: 380%;
+				font-size: 4vw;
 			}
 			h2 {
 				font-weight: 500;
@@ -31,7 +31,7 @@
 				color: Red;
 				margin: 10px auto;
 				text-indent: 25%;
-				font-size: 1500%;
+				font-size: 35vw;
 				font-weight: bold;
 			}
 			#desglose {
@@ -46,7 +46,7 @@
 			}
 			#desglose p {
 				color: white;
-				font-size: 1.6em;
+				font-size: 3vw;
 				margin: 5px;
 				padding: 3px;
 				text-indent: 15%;
@@ -101,8 +101,8 @@
 					// Calculamos la puntuación sumando la Calidad Técnica y el OverAll (se añade el sumando Nandu)
 					var pts = ct + ov + nd;
 					
-					calidadTecnica.innerHTML = ct;
-					overAll.innerHTML = ov;
+					calidadTecnica.innerHTML = ct.toFixed(2);
+					overAll.innerHTML = ov.toFixed(2);
 					if (str.checkNandu){
 						// Mostramos la sección del desglose dónde se indica la nota de Nandu
 						document.getElementById("seccionNandu").style.display='block';
@@ -112,7 +112,7 @@
 						// Ocultamos la sección del desglose dónde se indica la nota de Nandu
 						document.getElementById("seccionNandu").style.display='none';
 					}
-					puntuacion.innerHTML = pts;
+					puntuacion.innerHTML = pts.toFixed(2);
 				}
 			}
 			
@@ -166,7 +166,7 @@
 			<!-- Enmarcamos -->
 			<fieldset>
 				<!-- Título del Enmarcado -->
-				<legend>Desglose</legend>
+				<legend>&nbsp;Desglose&nbsp;</legend>
 				<h3>CT / TQ</h3>
 				<!-- Nota de calidad técnica -->
 				<p id="calidadTecnica">0,00</p>
