@@ -31,7 +31,7 @@
 				color: Red;
 				margin: 10px auto;
 				text-indent: 25%;
-				font-size: 700%;
+				font-size: 1500%;
 				font-weight: bold;
 			}
 			#desglose {
@@ -42,6 +42,7 @@
 				margin: 5px;
 				padding: 5px;
 				text-indent: 10%;
+				z-index: -1;
 			}
 			#desglose p {
 				color: white;
@@ -74,11 +75,13 @@
 			};
 			
 			function myTimer() {
-				if (window.opener.document.cookie != lastValue){
+				//if (window.opener.document.cookie != lastValue){
+				if (document.cookie != lastValue){
 					lastValue = document.cookie;
 					// Convertimos los valores del String Cookie en un Objeto JSON
-					var str ='{"' + document.cookie.replace(/=/g, '":"').replace(/;/g,'","').replace(/ /g,'') + '"}';
-					str=JSON.parse(str);
+					//var str ='{"' + document.cookie.replace(/=/g, '":"').replace(/;/g,'","').replace(/ /g,'') + '"}';
+					//str=JSON.parse(str);
+					var str=JSON.parse(lastValue);
 					competidor.innerHTML = str["competidor"];
 					categoria.innerHTML = str["categoria"];
 					

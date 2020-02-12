@@ -26,26 +26,34 @@
 				//rellenarControl();
 			}
 			
-			/*function rellenarControl(){
-				debugger;
-				puntuacion = myWindow.document.getElementById("puntuacion");
-				calidadTecnica = myWindow.document.getElementById("calidadTecnica");
-				overAll = myWindow.document.getElementById("overAll");
-				competidor = myWindow.document.getElementById("competidor");
-			}*/
+			//function rellenarControl(){
+				//debugger;
+				//puntuacion = myWindow.document.getElementById("puntuacion");
+				//calidadTecnica = myWindow.document.getElementById("calidadTecnica");
+				//overAll = myWindow.document.getElementById("overAll");
+				//competidor = myWindow.document.getElementById("competidor");
+			//}
 			
 			function mandarDatos(){
 				var inputCategoria = document.getElementById("categoria");
 				var inputNombre = document.getElementById("nombre");
 				var inputCT = document.getElementById("ct");
 				var inputOV = document.getElementById("ov");
+				var inputNandu = document.getElementById("nd");
+				var datos=new Object();
+				datos.categoria=inputCategoria.value;
+				datos.competidor=inputNombre.value;
+				datos.calidadTecnica=inputCT.value;
+				datos.overAll=inputOV.value;
+				datos.nandu=inputNandu.value;
 				//debugger;
 				//window.postMessage({ type: "CLEAR_COOKIES_EXTENSION_API" }, "*");
 				//competidor.innerHTML = inputNombre.value;
-				document.cookie = "categoria="+inputCategoria.value;
-				document.cookie = "competidor="+inputNombre.value;
-				document.cookie = "calidadTecnica="+inputCT.value;
-				document.cookie = "overAll="+inputOV.value;
+				//document.cookie = "categoria="+inputCategoria.value;
+				//document.cookie = "competidor="+inputNombre.value;
+				//document.cookie = "calidadTecnica="+inputCT.value;
+				//document.cookie = "overAll="+inputOV.value;
+				document.cookie=JSON.stringify(datos);
 			}
 		</script>
 
@@ -64,6 +72,6 @@
 			<input type="text" name="nd" id="nd"><br>
 			<button type="button" onclick="mandarDatos()">Mostrar en Marcador</button>
 			<button type="reset" value="Reset">Reset</button>
-			<button type="button" onclick="abrirMarcador()">Abrir Marcador</button>
+			<!--<button type="button" onclick="abrirMarcador()">Abrir Marcador</button>-->
 		</form>
 </html>
